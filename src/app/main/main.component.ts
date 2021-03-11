@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { APIService } from '../services/api.service';
 import Swal from 'sweetalert2'
+import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;
 @Component({
   selector: 'app-main',
@@ -13,12 +14,12 @@ export class MainComponent implements OnInit {
 
   news:any = [];
   apps_now:any = "home";
-  surf_path = "https://www.google.com";
+  surf_path:any;
 
-  constructor(private _APIService: APIService,private _elementRef:ElementRef) { }
+  constructor(private _APIService: APIService,private _elementRef:ElementRef, protected _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    
+    this.surf_path =  this._sanitizer.bypassSecurityTrustResourceUrl( "https://greatech-group.com/" );
     let penang = document.getElementById('penang-weather');
     let kulim = document.getElementById('kulim-weather');
     let batukawan = document.getElementById('batu-kawan-weather');
@@ -129,53 +130,53 @@ export class MainComponent implements OnInit {
     }
   }
 
-  openAppsPanel(){
-    Swal.fire({
-      html:
-      `
-        <div class="text-white">
-          <h2><span class="badge badge-light">Apps</span></h2>
-          <div class="row">
-            <div class="col-sm-6 pointer mt-5">
-              <img src="assets/img/minecraft.png" class="img-fluid" width="50" />
-              <br><br>
-              <span>Minecraft</span>
-            </div>
-            <div class="col-sm-6 pointer mt-5">
-              <img src="assets/img/stock-market.png" class="img-fluid" width="50" />
-              <br><br>
-              <span>Stock</span>
-            </div>
-            <div class="col-sm-6 pointer mt-5" id="app-panel-browser-btn">
-              <img src="assets/img/web-search-engine.png" class="img-fluid" width="50" />
-              <br><br>
-              <span>Web Search</span>
-            </div>
-            <div class="col-sm-6 pointer mt-5">
-              <img src="assets/img/fast-food.png" class="img-fluid" width="50" />
-              <br><br>
-              <span>Random Food</span>
-            </div>
-          </div>
-        </div>
-      `,
-      width: 700,
-      padding: '3em',
-      background: '#232323',
-      backdrop: `
-        rgba(0,0,0,0.7)
-      `,
-      showCloseButton: true,
-      showConfirmButton: false
-    });
+  // openAppsPanel(){
+  //   Swal.fire({
+  //     html:
+  //     `
+        // <div class="text-white">
+        //   <h2><span class="badge badge-light">Apps</span></h2>
+        //   <div class="row">
+        //     <div class="col-sm-6 pointer mt-5">
+        //       <img src="assets/img/minecraft.png" class="img-fluid" width="50" />
+        //       <br><br>
+        //       <span>Minecraft</span>
+        //     </div>
+        //     <div class="col-sm-6 pointer mt-5">
+        //       <img src="assets/img/stock-market.png" class="img-fluid" width="50" />
+        //       <br><br>
+        //       <span>Stock</span>
+        //     </div>
+        //     <div class="col-sm-6 pointer mt-5" id="app-panel-browser-btn">
+        //       <img src="assets/img/web-search-engine.png" class="img-fluid" width="50" />
+        //       <br><br>
+        //       <span>Web Search</span>
+        //     </div>
+        //     <div class="col-sm-6 pointer mt-5">
+        //       <img src="assets/img/fast-food.png" class="img-fluid" width="50" />
+        //       <br><br>
+        //       <span>Random Food</span>
+        //     </div>
+        //   </div>
+        // </div>
+  //     `,
+  //     width: 700,
+  //     padding: '3em',
+  //     background: '#232323',
+  //     backdrop: `
+  //       rgba(0,0,0,0.7)
+  //     `,
+  //     showCloseButton: true,
+  //     showConfirmButton: false
+  //   });
+  //   //.addEventListener('click', (evt: Event) => this.changePanel('browser'));
+  //   console.log(this._elementRef.nativeElement.querySelector('#app-panel-browser-btn'));
 
-    this._elementRef.nativeElement.querySelector('#app-panel-browser-btn').addEventListener('click', (evt: Event) => this.changePanel('browser'));
-
-  }
+  // }
 
   surfNet(link){
     this.changePanel("browser");
-    this.surf_path = link;
+    this.surf_path = this._sanitizer.bypassSecurityTrustResourceUrl( link );
   }
 
   changePanel(apps){

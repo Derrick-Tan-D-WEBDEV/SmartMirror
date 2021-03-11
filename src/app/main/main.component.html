@@ -30,17 +30,56 @@
             </div>
 
             <div class="row" id="browser" [ngClass]="{'display-hide': apps_now != 'browser'}">
-                <div class="row">   
-                    <div class="col-12">
-                        <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
-                    </div>
-                    <div class="col-12">
-                        <!-- <iframe [src]="surf_path">
+
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                </div>
+                <div class="col-sm-12 mt-5">
+                    <!-- <iframe  [src]="surf_path" width="680" height="1000">
 
 
-                        </iframe> -->
+                    </iframe> -->
+                    <seb-magic-iframe source="surf_path"></seb-magic-iframe>
+                </div>
+
+
+
+            </div>
+
+            <div class="row" id="apps-panel" [ngClass]="{'display-hide': apps_now != 'apps-panel'}">
+
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                </div>
+                <div class="col-sm-12 mt-5" >
+                    <div class="text-white text-center" id="panel-scroll-apps">
+                        <h2><span class="badge badge-light">Apps</span></h2>
+                        <div class="row">
+                            <div class="col-sm-6 pointer mt-5">
+                                <img src="assets/img/minecraft.png" class="img-fluid" width="50" />
+                                <br><br>
+                                <span>Minecraft</span>
+                            </div>
+                            <div class="col-sm-6 pointer mt-5">
+                                <img src="assets/img/stock-market.png" class="img-fluid" width="50" />
+                                <br><br>
+                                <span>Stock</span>
+                            </div>
+                            <div class="col-sm-6 pointer mt-5" id="app-panel-browser-btn" (click)="changePanel('browser')">
+                                <img src="assets/img/web-search-engine.png" class="img-fluid" width="50" />
+                                <br><br>
+                                <span>Web Search</span>
+                            </div>
+                            <div class="col-sm-6 pointer mt-5">
+                                <img src="assets/img/fast-food.png" class="img-fluid" width="50" />
+                                <br><br>
+                                <span>Random Food</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
 
 
             </div>
@@ -48,6 +87,6 @@
     </div>
 </div>
 
-<footer class="sticky-bottom pointer" style="text-align: center;" (click)="openAppsPanel()">
+<footer class="sticky-bottom pointer" style="text-align: center;" (click)="changePanel('apps-panel')">
     <i class="fas fa-th-large fa-3x"></i>
 </footer>

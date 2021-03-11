@@ -19,3 +19,21 @@
 hr{
     border-color: white;
 }
+
+#panel-scroll-apps{
+    background-color:#232323;
+    border-radius: 15px;
+    padding:20px;
+    overflow-y: scroll;
+    min-height: 1000px;
+    max-height: 1000px;
+}
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
