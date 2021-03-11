@@ -5,3 +5,17 @@
 .flex-fill {
     flex: 1 1 auto;
 }
+
+#currentTime{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 40px;
+}
+
+#currentDate{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 25px;
+}
+
+hr{
+    border-color: white;
+}
