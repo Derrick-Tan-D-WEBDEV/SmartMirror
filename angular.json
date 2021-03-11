@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "SmartMirror"
+  "defaultProject": "SmartMirror",
+  "cli": {
+    "analytics": "21c319b0-27a0-4fa2-bfbc-48317ff4f9bf"
+  }
 }
