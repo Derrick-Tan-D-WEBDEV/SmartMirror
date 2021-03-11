@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { APIService } from '../services/api.service';
 import Swal from 'sweetalert2'
 declare var $: any;
@@ -12,9 +12,13 @@ export class MainComponent implements OnInit {
   no:any = 1;
 
   news:any = [];
-  constructor(private _APIService: APIService) { }
+  apps_now:any = "home";
+  surf_path = "https://www.google.com";
+
+  constructor(private _APIService: APIService,private _elementRef:ElementRef) { }
 
   ngOnInit(): void {
+    
     let penang = document.getElementById('penang-weather');
     let kulim = document.getElementById('kulim-weather');
     let batukawan = document.getElementById('batu-kawan-weather');
@@ -142,7 +146,7 @@ export class MainComponent implements OnInit {
               <br><br>
               <span>Stock</span>
             </div>
-            <div class="col-sm-6 pointer mt-5">
+            <div class="col-sm-6 pointer mt-5" id="app-panel-browser-btn">
               <img src="assets/img/web-search-engine.png" class="img-fluid" width="50" />
               <br><br>
               <span>Web Search</span>
@@ -163,7 +167,19 @@ export class MainComponent implements OnInit {
       `,
       showCloseButton: true,
       showConfirmButton: false
-    })
+    });
+
+    this._elementRef.nativeElement.querySelector('#app-panel-browser-btn').addEventListener('click', (evt: Event) => this.changePanel('browser'));
+
+  }
+
+  surfNet(link){
+    this.changePanel("browser");
+    this.surf_path = link;
+  }
+
+  changePanel(apps){
+    this.apps_now = apps;
   }
 }
 

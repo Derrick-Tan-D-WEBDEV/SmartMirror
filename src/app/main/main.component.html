@@ -1,7 +1,7 @@
 <div class="container-fluid cover-container p-4">
     <div class="col-12">
         <main>
-            <div class="row">
+            <div class="row" id="home" [ngClass]="{'display-hide': apps_now != 'home'}">
                 <div class="col-sm-6">
                     <span id="currentTime"></span><hr>
                     <span id="currentDate"></span>
@@ -12,16 +12,16 @@
                         
                     </div>
                    <div id="kulim-weather">
-                        ab
+
                    </div>
                    <div id="batu-kawan-weather">
-                        ac
+
                     </div>
                 </div>
                 <div class="col-sm-12 mt-5">
                     <h2 ><span class="badge badge-dark">News</span></h2>
                     <div *ngFor="let n of news">
-                        <p class="oneline"> <b>{{n.publish_date}}</b>&nbsp;&nbsp;|&nbsp;&nbsp;{{n.title}}</p>
+                        <p class="oneline" (click)="surfNet(n.link)"> <b>{{n.publish_date}}</b>&nbsp;&nbsp;|&nbsp;&nbsp;{{n.title}}</p>
                     </div>
                 </div>
                 <div class="col-sm-12 mt-5">
@@ -29,6 +29,21 @@
                 </div>
             </div>
 
+            <div class="row" id="browser" [ngClass]="{'display-hide': apps_now != 'browser'}">
+                <div class="row">   
+                    <div class="col-12">
+                        <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                    </div>
+                    <div class="col-12">
+                        <!-- <iframe [src]="surf_path">
+
+
+                        </iframe> -->
+                    </div>
+                </div>
+
+
+            </div>
         </main>
     </div>
 </div>

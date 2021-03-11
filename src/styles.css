@@ -19,3 +19,11 @@ html,body{
 .pointer{
     cursor: pointer;
 }
+
+.display-hide{
+    display:none;
+}
+
+.display-show{
+    display:block;
+}
