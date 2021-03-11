@@ -36,4 +36,12 @@ export class APIService {
     }),
     catchError(this.handleError));
   }
+
+  getAllNewsAPI_data(location):Observable<any>{
+    return this.httpClient.post<any>(this.base_path+'getAllNewsAPI_data.php',{location}).pipe(
+      map((res) => {
+        return res;
+    }),
+    catchError(this.handleError));
+  }
 }

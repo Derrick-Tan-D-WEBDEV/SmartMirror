@@ -3,8 +3,8 @@
 /* You can add global styles to this file, and also import other style files */
 html,body{
     background-color: black!important;
-    font-family: 'Roboto', sans-serif;
     color:white!important;
     overflow-y: hidden; /* Hide vertical scrollbar */
     overflow-x: hidden; /* Hide horizontal scrollbar */
+    font-family: 'Orbitron', sans-serif;
 }

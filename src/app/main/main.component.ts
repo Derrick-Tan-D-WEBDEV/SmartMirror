@@ -12,13 +12,20 @@ export class MainComponent implements OnInit {
   constructor(private _APIService: APIService) { }
 
   ngOnInit(): void {
+    let penang = document.getElementById('penang-weather');
+    let kulim = document.getElementById('kulim-weather');
+    let batukawan = document.getElementById('batu-kawan-weather');
+    penang.style.display = 'none';
+    kulim.style.display = 'none';
+    batukawan.style.display = 'none';
+    this.changeWeatherAPI_data();
     this.getAllWeatherAPI_data(1);
     this.getAllWeatherAPI_data(2);
     this.getAllWeatherAPI_data(3);
     setInterval(this.showDate, 1000);
     setInterval(() => {
       this.changeWeatherAPI_data(); 
-    }, 1000);
+    }, 4000);
   }
 
 
@@ -56,7 +63,26 @@ export class MainComponent implements OnInit {
   getAllWeatherAPI_data(location){
     this._APIService.getAllWeatherAPI_data(location).subscribe(
       v =>{
-        this.weather_data.push(v.data.db_result);
+        console.log(v.data.db_result);
+        var html = "";
+        if(location == 1){
+          let penang = document.getElementById('penang-weather');
+          html += "<h2><img src='"+v.data.db_result.image+"' />Bayan Lepas,\nPenang</h2>";
+          html += "<h4>"+ v.data.db_result.temperature + " &#8451; &nbsp;|&nbsp; Wind:&nbsp;"+v.data.db_result.wind+"km/h</h4>";
+          penang.innerHTML = html;
+        }
+        else if(location == 2){
+          let kulim = document.getElementById('kulim-weather');
+          html += "<h2><img src='"+v.data.db_result.image+"' />Kulim,<br>Kedah</h2>";
+          html += "<h4>"+ v.data.db_result.temperature + " &#8451; &nbsp;|&nbsp; Wind:&nbsp;"+v.data.db_result.wind+"km/h</h4>";
+          kulim.innerHTML = html;
+        }
+        else if(location == 3){
+          let batukawan = document.getElementById('batu-kawan-weather');
+          html += "<h2><img src='"+v.data.db_result.image+"' />Batu Kawan,\nPenang</h2>";
+          html += "<h4>"+ v.data.db_result.temperature + " &#8451; &nbsp;|&nbsp; Wind:&nbsp;"+v.data.db_result.wind+"km/h</h4>";
+          batukawan.innerHTML = html;
+        }
 
       });
   }
