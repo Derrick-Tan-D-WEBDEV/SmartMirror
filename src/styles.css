@@ -8,3 +8,14 @@ html,body{
     overflow-x: hidden; /* Hide horizontal scrollbar */
     font-family: 'Orbitron', sans-serif;
 }
+
+.oneline{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align:justify;
+}
+
+.pointer{
+    cursor: pointer;
+}

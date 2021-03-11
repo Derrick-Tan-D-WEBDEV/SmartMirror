@@ -37,8 +37,8 @@ export class APIService {
     catchError(this.handleError));
   }
 
-  getAllNewsAPI_data(location):Observable<any>{
-    return this.httpClient.post<any>(this.base_path+'getAllNewsAPI_data.php',{location}).pipe(
+  getAllNewsAPI_data():Observable<any>{
+    return this.httpClient.post<any>(this.base_path+'getAllNewsAPI_data.php',{}).pipe(
       map((res) => {
         return res;
     }),

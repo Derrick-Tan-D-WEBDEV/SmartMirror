@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../services/api.service';
+import Swal from 'sweetalert2'
 declare var $: any;
 @Component({
   selector: 'app-main',
@@ -9,6 +10,8 @@ declare var $: any;
 export class MainComponent implements OnInit {
   weather_data:any = [];
   no:any = 1;
+
+  news:any = [];
   constructor(private _APIService: APIService) { }
 
   ngOnInit(): void {
@@ -18,14 +21,16 @@ export class MainComponent implements OnInit {
     penang.style.display = 'none';
     kulim.style.display = 'none';
     batukawan.style.display = 'none';
+
     this.changeWeatherAPI_data();
     this.getAllWeatherAPI_data(1);
     this.getAllWeatherAPI_data(2);
     this.getAllWeatherAPI_data(3);
+    this.getAllNewsAPI_data();
+
     setInterval(this.showDate, 1000);
-    setInterval(() => {
-      this.changeWeatherAPI_data(); 
-    }, 4000);
+    setInterval(() => { this.changeWeatherAPI_data(); }, 3600000);
+
   }
 
 
@@ -63,7 +68,7 @@ export class MainComponent implements OnInit {
   getAllWeatherAPI_data(location){
     this._APIService.getAllWeatherAPI_data(location).subscribe(
       v =>{
-        console.log(v.data.db_result);
+
         var html = "";
         if(location == 1){
           let penang = document.getElementById('penang-weather');
@@ -87,6 +92,14 @@ export class MainComponent implements OnInit {
       });
   }
 
+  getAllNewsAPI_data(){
+    this._APIService.getAllNewsAPI_data().subscribe(
+      v =>{
+        this.news = v.data.db_result;
+
+      });
+  }
+
   changeWeatherAPI_data(){
  
     let penang = document.getElementById('penang-weather');
@@ -97,23 +110,60 @@ export class MainComponent implements OnInit {
       penang.style.display = 'block';
       kulim.style.display = 'none';
       batukawan.style.display = 'none';
-      console.log("123");
     }
     else if(this.no == 2){
       this.no += 1;
       penang.style.display = 'none';
       kulim.style.display = 'block';
       batukawan.style.display = 'none';
-      console.log("2");
     }
     else if(this.no == 3){
       this.no = 1;
       penang.style.display = 'none';
       kulim.style.display = 'none';
       batukawan.style.display = 'block';
-      console.log("3");
     }
   }
 
+  openAppsPanel(){
+    Swal.fire({
+      html:
+      `
+        <div class="text-white">
+          <h2><span class="badge badge-light">Apps</span></h2>
+          <div class="row">
+            <div class="col-sm-6 pointer mt-5">
+              <img src="assets/img/minecraft.png" class="img-fluid" width="50" />
+              <br><br>
+              <span>Minecraft</span>
+            </div>
+            <div class="col-sm-6 pointer mt-5">
+              <img src="assets/img/stock-market.png" class="img-fluid" width="50" />
+              <br><br>
+              <span>Stock</span>
+            </div>
+            <div class="col-sm-6 pointer mt-5">
+              <img src="assets/img/web-search-engine.png" class="img-fluid" width="50" />
+              <br><br>
+              <span>Web Search</span>
+            </div>
+            <div class="col-sm-6 pointer mt-5">
+              <img src="assets/img/fast-food.png" class="img-fluid" width="50" />
+              <br><br>
+              <span>Random Food</span>
+            </div>
+          </div>
+        </div>
+      `,
+      width: 700,
+      padding: '3em',
+      background: '#232323',
+      backdrop: `
+        rgba(0,0,0,0.7)
+      `,
+      showCloseButton: true,
+      showConfirmButton: false
+    })
+  }
 }
 
