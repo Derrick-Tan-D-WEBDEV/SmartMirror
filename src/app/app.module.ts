@@ -16,7 +16,8 @@ import { NiClockModule } from 'ni-clock';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NiClockModule
+    NiClockModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

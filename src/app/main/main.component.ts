@@ -16,10 +16,17 @@ export class MainComponent implements OnInit {
   apps_now:any = "home";
   surf_path:any;
 
+  _news_title:any = "asd";
+  _news_content:any = "asdsd";
+  _news_image:any = "https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+
+  _quote_content:any = "";
+  _quote_title:any = "";
+
   constructor(private _APIService: APIService,private _elementRef:ElementRef, protected _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.surf_path =  this._sanitizer.bypassSecurityTrustResourceUrl( "https://greatech-group.com/" );
+
     let penang = document.getElementById('penang-weather');
     let kulim = document.getElementById('kulim-weather');
     let batukawan = document.getElementById('batu-kawan-weather');
@@ -32,9 +39,10 @@ export class MainComponent implements OnInit {
     this.getAllWeatherAPI_data(2);
     this.getAllWeatherAPI_data(3);
     this.getAllNewsAPI_data();
+    this.getOneQuote_data();
 
     setInterval(this.showDate, 1000);
-    setInterval(() => { this.changeWeatherAPI_data(); }, 3600000);
+    setInterval(() => { this.changeWeatherAPI_data(); }, 5000);
 
   }
 
@@ -77,7 +85,7 @@ export class MainComponent implements OnInit {
         var html = "";
         if(location == 1){
           let penang = document.getElementById('penang-weather');
-          html += "<h2><img src='"+v.data.db_result.image+"' />Bayan Lepas,\nPenang</h2>";
+          html += "<h2><img src='"+v.data.db_result.image+"' />Bayan Lepas,<br>Penang</h2>";
           html += "<h4>"+ v.data.db_result.temperature + " &#8451; &nbsp;|&nbsp; Wind:&nbsp;"+v.data.db_result.wind+"km/h</h4>";
           penang.innerHTML = html;
         }
@@ -89,11 +97,19 @@ export class MainComponent implements OnInit {
         }
         else if(location == 3){
           let batukawan = document.getElementById('batu-kawan-weather');
-          html += "<h2><img src='"+v.data.db_result.image+"' />Batu Kawan,\nPenang</h2>";
+          html += "<h2><img src='"+v.data.db_result.image+"' />Batu Kawan,<br>Penang</h2>";
           html += "<h4>"+ v.data.db_result.temperature + " &#8451; &nbsp;|&nbsp; Wind:&nbsp;"+v.data.db_result.wind+"km/h</h4>";
           batukawan.innerHTML = html;
         }
 
+      });
+  }
+
+  getOneQuote_data(){
+    this._APIService.getOneQuote_data().subscribe(
+      v =>{
+        this._quote_content = v.content;
+        this._quote_title = v.originator.name;
       });
   }
 
@@ -174,13 +190,13 @@ export class MainComponent implements OnInit {
 
   // }
 
-  surfNet(link){
-    this.changePanel("browser");
-    this.surf_path = this._sanitizer.bypassSecurityTrustResourceUrl( link );
-  }
 
   changePanel(apps){
     this.apps_now = apps;
+  }
+
+  changeNews(title, content){
+    this.changePanel("news");
   }
 }
 
