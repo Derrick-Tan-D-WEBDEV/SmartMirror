@@ -38,9 +38,9 @@ hr{
     background: #FF0000;
 }
 
-/* .wrap {
+.wrap {
     width: 700px;
-    height: 400px;
+    height: 350px;
     padding: 0;
     overflow: hidden;
 }
@@ -59,4 +59,4 @@ hr{
     -o-transform-origin: 0 0;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
-} */
+}

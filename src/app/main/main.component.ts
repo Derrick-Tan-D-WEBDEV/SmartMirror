@@ -106,10 +106,19 @@ export class MainComponent implements OnInit {
   }
 
   getOneQuote_data(){
+
     this._APIService.getOneQuote_data().subscribe(
       v =>{
-        this._quote_content = v.content;
-        this._quote_title = v.originator.name;
+        if(v.content.length > 200){
+          this._quote_content = v.content;
+          this._quote_title = v.originator.name;
+
+        }
+        else{
+          this._quote_content = v.content;
+          this._quote_title = v.originator.name;
+        }
+
       });
   }
 
