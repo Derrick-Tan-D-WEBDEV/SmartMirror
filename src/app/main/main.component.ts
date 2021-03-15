@@ -126,7 +126,6 @@ export class MainComponent implements OnInit {
     this._APIService.getAllNewsAPI_data().subscribe(
       v =>{
         this.news = v.data.db_result;
-
       });
   }
 
@@ -204,8 +203,12 @@ export class MainComponent implements OnInit {
     this.apps_now = apps;
   }
 
-  changeNews(title, content){
+  changeNews(title, content,image){
     this.changePanel("news");
+    this._news_title = title;
+    this._news_content = content;
+    this._news_image = image;
+
   }
 }
 
