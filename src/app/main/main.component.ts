@@ -13,15 +13,29 @@ export class MainComponent implements OnInit {
   no:any = 1;
 
   news:any = [];
+
+  forex:any = {};
+  current_forex:any = [];
+  forexSelected:any = "EUR";
+  forexKeyList:any = [];
+
+  
   apps_now:any = "home";
   surf_path:any;
 
   _news_title:any = "asd";
   _news_content:any = "asdsd";
-  _news_image:any = "https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+  _news_image:any = "";
 
   _quote_content:any = "";
   _quote_title:any = "";
+
+  _covid_total:any = 0;
+  _covid_recovered:any = 0;
+  _covid_new_case:any = 0;
+  _covid_icu: any = 0;
+  _covid_deaths:any = 0;
+  
 
   constructor(private _APIService: APIService,private _elementRef:ElementRef, protected _sanitizer: DomSanitizer) { }
 
@@ -40,7 +54,13 @@ export class MainComponent implements OnInit {
     this.getAllWeatherAPI_data(3);
     this.getAllNewsAPI_data();
     this.getOneQuote_data();
+    this.getCovidAPI_data();
+    this.getAllForexAPI_data("EUR");
+    this.getAllForexAPI_data("GBP");
+    this.current_forex = this.forex[this.forexSelected];
 
+
+    console.log(this.forex);
     setInterval(this.showDate, 1000);
     setInterval(() => { this.changeWeatherAPI_data(); }, 5000);
 
@@ -81,7 +101,6 @@ export class MainComponent implements OnInit {
   getAllWeatherAPI_data(location){
     this._APIService.getAllWeatherAPI_data(location).subscribe(
       v =>{
-
         var html = "";
         if(location == 1){
           let penang = document.getElementById('penang-weather');
@@ -109,16 +128,8 @@ export class MainComponent implements OnInit {
 
     this._APIService.getOneQuote_data().subscribe(
       v =>{
-        if(v.content.length > 200){
           this._quote_content = v.content;
           this._quote_title = v.originator.name;
-
-        }
-        else{
-          this._quote_content = v.content;
-          this._quote_title = v.originator.name;
-        }
-
       });
   }
 
@@ -126,6 +137,28 @@ export class MainComponent implements OnInit {
     this._APIService.getAllNewsAPI_data().subscribe(
       v =>{
         this.news = v.data.db_result;
+      });
+  }
+
+  getAllForexAPI_data(base){
+    this._APIService.getAllForexAPI_data(base).subscribe(
+      v =>{
+        this.forex[base] = v;
+        this.forexKeyList = [];
+        this.current_forex = this.forex[this.forexSelected]["rates"];
+        Object.keys(this.current_forex).forEach(k => this.forexKeyList.push(k));
+      });
+  }
+
+  getCovidAPI_data(){
+    this._APIService.getAllCovidAPI_data().subscribe(
+      v =>{
+        this._covid_total = v.data.db_result.total_active;
+        this._covid_recovered = v.data.db_result.total_recovered;
+        this._covid_new_case = v.data.db_result.new_case;
+        this._covid_icu = v.data.db_result.total_icu;
+        this._covid_deaths = v.data.db_result.total_deaths;
+        console.log(v);
       });
   }
 
@@ -203,12 +236,19 @@ export class MainComponent implements OnInit {
     this.apps_now = apps;
   }
 
-  changeNews(title, content,image){
+  changeNews(title,image,i){
     this.changePanel("news");
     this._news_title = title;
-    this._news_content = content;
+    this._news_content = this.news[i]["content"];
     this._news_image = image;
+  }
+
+  onChangeForex(event){
+    this.forexKeyList = [];
+    this.current_forex = this.forex[this.forexSelected]["rates"];
+    Object.keys(this.current_forex).forEach(k => this.forexKeyList.push(k));
 
   }
+
 }
 

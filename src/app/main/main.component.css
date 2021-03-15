@@ -60,3 +60,8 @@ hr{
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
 }
+
+.form-select-style{
+    background-color: transparent;
+    color:#faab00;
+}

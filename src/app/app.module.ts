@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { NiClockModule } from 'ni-clock';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { NiClockModule } from 'ni-clock';
     AppRoutingModule,
     HttpClientModule,
     NiClockModule,
-    
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

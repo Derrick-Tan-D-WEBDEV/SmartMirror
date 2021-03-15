@@ -27,7 +27,7 @@ export class APIService {
       'Something bad happened; please try again later.');
   };
 
-  base_path = 'http://192.168.31.53/SmartMirrorAPI/API/';
+  base_path = 'http://192.168.31.46/SmartMirrorAPI/API/';
 
   getAllWeatherAPI_data(location):Observable<any>{
     return this.httpClient.post<any>(this.base_path+'getAllWeatherAPI_data.php',{location}).pipe(
@@ -62,4 +62,19 @@ export class APIService {
     catchError(this.handleError));
   }
 
+  getAllCovidAPI_data():Observable<any>{
+    return this.httpClient.post<any>(this.base_path+'getAllCovidAPI_data.php',{}).pipe(
+      map((res) => {
+        return res;
+    }),
+    catchError(this.handleError));
+  }
+
+  getAllForexAPI_data(base):Observable<any>{
+    return this.httpClient.get<any>('https://api.exchangeratesapi.io/latest?base='+base).pipe(
+      map((res) => {
+        return res;
+    }),
+    catchError(this.handleError));
+  }
 }
