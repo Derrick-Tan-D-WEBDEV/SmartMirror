@@ -27,7 +27,7 @@ export class APIService {
       'Something bad happened; please try again later.');
   };
 
-  base_path = 'http://192.168.31.46/SmartMirrorAPI/API/';
+  base_path = 'http://192.168.31.61/SmartMirrorAPI/API/';
 
   getAllWeatherAPI_data(location):Observable<any>{
     return this.httpClient.post<any>(this.base_path+'getAllWeatherAPI_data.php',{location}).pipe(
@@ -72,6 +72,30 @@ export class APIService {
 
   getAllForexAPI_data(base):Observable<any>{
     return this.httpClient.get<any>('https://api.exchangeratesapi.io/latest?base='+base).pipe(
+      map((res) => {
+        return res;
+    }),
+    catchError(this.handleError));
+  }
+
+  getRandomFoodAPI_data():Observable<any>{
+    return this.httpClient.post<any>(this.base_path+'getRandomFoodAPI_data.php',{}).pipe(
+      map((res) => {
+        return res;
+    }),
+    catchError(this.handleError));
+  }
+
+  getAllFuelAPI_data():Observable<any>{
+    return this.httpClient.post<any>(this.base_path+'getAllFuelAPI_data.php',{}).pipe(
+      map((res) => {
+        return res;
+    }),
+    catchError(this.handleError));
+  }
+
+  getRandomMemeAPI_data():Observable<any>{
+    return this.httpClient.get<any>('https://meme-api.herokuapp.com/gimme').pipe(
       map((res) => {
         return res;
     }),

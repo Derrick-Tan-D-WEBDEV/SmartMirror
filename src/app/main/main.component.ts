@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
   forexKeyList:any = [];
 
   
-  apps_now:any = "home";
+  apps_now:any = "meme";
   surf_path:any;
 
   _news_title:any = "asd";
@@ -36,7 +36,19 @@ export class MainComponent implements OnInit {
   _covid_icu: any = 0;
   _covid_deaths:any = 0;
   
+  randomDone:any = 0;
+  _food_store_name:any = "";
+  _food_image:any = "";
+  _food_rating:any = "";
+  _food_address:any = "";
+  _food_price:any = "";
+  _food_phone:any = "";
 
+  _fuel_ron95:any = 0;
+  _fuel_ron97:any = 0;
+  _fuel_diesel:any = 0;
+
+  _meme_url:any = "";
   constructor(private _APIService: APIService,private _elementRef:ElementRef, protected _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -57,7 +69,11 @@ export class MainComponent implements OnInit {
     this.getCovidAPI_data();
     this.getAllForexAPI_data("EUR");
     this.getAllForexAPI_data("GBP");
+    this.getAllFuelAPI_data();
+
     this.current_forex = this.forex[this.forexSelected];
+    this.getRandomFoodAPI_data();
+    this.getRandomMemeAPI_data();
 
 
     console.log(this.forex);
@@ -124,6 +140,19 @@ export class MainComponent implements OnInit {
       });
   }
 
+  getRandomFoodAPI_data(){
+    this._APIService.getRandomFoodAPI_data().subscribe(
+      v =>{
+        v = v["data"]["db_result"]
+        this._food_address = v[0]["address"];
+        this._food_store_name = v[0]["name"];
+        this._food_image = v[0]["image"];
+        this._food_rating= v[0]["rating"];
+        this._food_price = v[0]["price"];
+        this._food_phone = v[0]["phone"];
+      });    
+  }
+
   getOneQuote_data(){
 
     this._APIService.getOneQuote_data().subscribe(
@@ -144,9 +173,6 @@ export class MainComponent implements OnInit {
     this._APIService.getAllForexAPI_data(base).subscribe(
       v =>{
         this.forex[base] = v;
-        this.forexKeyList = [];
-        this.current_forex = this.forex[this.forexSelected]["rates"];
-        Object.keys(this.current_forex).forEach(k => this.forexKeyList.push(k));
       });
   }
 
@@ -161,6 +187,23 @@ export class MainComponent implements OnInit {
         console.log(v);
       });
   }
+
+  getAllFuelAPI_data(){
+    this._APIService.getAllFuelAPI_data().subscribe(
+      v =>{
+        this._fuel_ron95 = v.data.db_result.ron95;
+        this._fuel_ron97 = v.data.db_result.ron97;
+        this._fuel_diesel = v.data.db_result.diesel;
+      });    
+  }
+
+  getRandomMemeAPI_data(){
+    this._APIService.getRandomMemeAPI_data().subscribe(
+      v =>{
+        this._meme_url = v.url
+      });    
+  }
+
 
   changeWeatherAPI_data(){
  
@@ -234,6 +277,20 @@ export class MainComponent implements OnInit {
 
   changePanel(apps){
     this.apps_now = apps;
+    if(apps == "forex"){
+      this.forexKeyList = [];
+      this.current_forex = this.forex[this.forexSelected]["rates"];
+      Object.keys(this.current_forex).forEach(k => this.forexKeyList.push(k));
+    }
+    if(apps == "home"){
+      this.getOneQuote_data();
+    }
+    if(apps == "randomfood"){
+      this.randomDone = 0;
+    }
+    if(apps == "fuel"){
+      this.getAllFuelAPI_data();
+    }
   }
 
   changeNews(title,image,i){
@@ -250,5 +307,15 @@ export class MainComponent implements OnInit {
 
   }
 
+  changeFood(){
+    this.randomDone = 2;
+    this.getRandomFoodAPI_data();
+    setTimeout(() => { this.randomDone = 1; }, 5000);
+  }
+
+  changeMeme(){
+    this.getRandomMemeAPI_data();
+
+  }
 }
 

@@ -57,7 +57,7 @@
 
                 </div> -->
             </div>
-
+            <!--News-->
             <div class="row" id="news" [ngClass]="{'display-hide': apps_now != 'news'}">
 
                 <div class="col-sm-12">
@@ -76,7 +76,50 @@
                     </div>
                 </div>
             </div>
+            <!--Random Food-->
+            <div class="row" id="randomfood" [ngClass]="{'display-hide': apps_now != 'randomfood'}">
 
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                </div>
+                <div class="col-sm-12 mt-5 text-center" *ngIf="randomDone == 0">
+                    <p class="text-center display-4">Random Food</p>
+                    <img src="assets/img/food-noodle.gif"/>
+                    <button class="btn btn-warning btn-block btn-lg" style="font-size:30px" (click)="changeFood()">Let's Find What To Eat!</button>
+                </div>
+                <div class="col-sm-12 mt-5 text-center" *ngIf="randomDone == 2">
+                    <p class="text-center display-4">Random Food</p>
+                    <img src="assets/img/random-food.gif"/>
+                    <p class="text-center display-3"> Finding Food For You...</p>
+                </div>
+                <div class="col-sm-12" *ngIf="randomDone == 1">
+                    <p class="text-center display-4">Random Food</p>
+                    <div class="card shadow mt-5" style="background-color:black;overflow-y: scroll;">
+                        <div class="card-body">
+                            <div class=" row">
+                                <div class="col-12 text-center">
+                                    <img src="{{_food_image}}" *ngIf="_food_image" style="height:300px;"/>
+                                    <img src="assets/img/no-photo.png" *ngIf="!_food_image" style="height:300px;"/>
+                                    <h2 *ngIf="!_food_image">No photo available!</h2>
+                                    <hr>
+                                    <h3>{{_food_store_name}}</h3>
+                                    <h4>{{_food_address}}</h4>
+                                    <div class="text-left" style="font-size: 25px;">
+                                        Ratings: {{_food_rating}}<br>
+                                        <span *ngIf="_food_price">Price: {{_food_price}}<br></span>
+                                        <span *ngIf="_food_phone">Phone: {{_food_phone}}</span>
+                                    </div>
+                                    <button class="btn btn-warning btn-block btn-lg mt-5" style="font-size:30px" (click)="changeFood()">Find Another Food?</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Forex-->
             <div class="row" id="forex" [ngClass]="{'display-hide': apps_now != 'forex'}">
 
                 <div class="col-sm-12">
@@ -86,7 +129,7 @@
                     <p class="text-center display-5 text-center">EUR/GBP Forex Exchange</p>
                     <div class="col-12">
                         <select [(ngModel)]="forexSelected" class="form-control form-select-style" (ngModelChange)="onChangeForex($event)">
-                            <option [value]="'EUR'">EUR</option>
+                            <option [value]="'EUR'" selected>EUR</option>
                             <option [value]="'GBP'">GBP</option>
                         </select>
                     </div>
@@ -103,10 +146,64 @@
                 </div>
             </div>
 
-            <div class="row" id="apps-panel" [ngClass]="{'display-hide': apps_now != 'apps-panel'}">
+            <!--Fuel-->
+            <div class="row" id="forex" [ngClass]="{'display-hide': apps_now != 'fuel'}">
 
                 <div class="col-sm-12">
                     <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                </div>
+                <div class="col-sm-12 mt-5 ">
+                    <p class="text-center display-4 text-center">Fuel Price</p>
+                    <div class="card shadow mt-5" style="background-color:black; height:840px; border: 0px solid white; overflow-y: scroll;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4 text-center">
+                                    <img src="assets/img/fuel/ron95.png" width="200" style="margin-bottom:15px;margin-bottom: 30px;">
+                                    <h3>RM {{_fuel_ron95}}</h3>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <img src="assets/img/fuel/ron97.png" width="230" style="height:30px; margin-bottom:30px;">
+                                    <h3>RM {{_fuel_ron97}}</h3>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <img src="assets/img/fuel/diesel.png" style="margin-top:-20px; margin-bottom:20px;" width="200">
+                                    <h3>RM {{_fuel_diesel}}</h3>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Meme-->
+            <div class="row" id="meme" [ngClass]="{'display-hide': apps_now != 'meme'}">
+
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                </div>
+                <div class="col-sm-12 mt-5 ">
+                    <p class="text-center display-4 text-center">Meme Generator</p>
+                    <div class="card shadow mt-5" style="background-color:black; height:800px; border: 0px solid white; overflow-y: scroll;">
+                        <div class="card-body">
+                            <div class="row p-2">
+                                <div class="col-12 text-center">
+                                    <img class="img-fluid" src="{{_meme_url}}" />
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-warning btn-block btn-lg mt-5" style="font-size:30px" (click)="changeMeme()">More memes to get more cancer😉?</button>
+                </div>
+            </div>
+
+            <div class="row" id="apps-panel" [ngClass]="{'display-hide': apps_now != 'apps-panel'}">
+
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back to Home</button>
                 </div>
                 <div class="col-sm-12 mt-5" >
                     <div class="text-white text-center" id="panel-scroll-apps">
@@ -118,9 +215,19 @@
                                 <span>EUR/GBP Forex Rate</span>
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/fast-food.png" class="img-fluid" width="50" />
+                                <img src="assets/img/fast-food.png" class="img-fluid" width="50" (click)="changePanel('randomfood')"/>
                                 <br><br>
                                 <span>Random Food</span>
+                            </div>
+                            <div class="col-sm-6 pointer mt-5">
+                                <img src="assets/img/gas-station.png" class="img-fluid" width="50" (click)="changePanel('fuel')"/>
+                                <br><br>
+                                <span>Fuel Price</span>                            
+                            </div>
+                            <div class="col-sm-6 pointer mt-5">
+                                <img src="assets/img/tongue-out.png" class="img-fluid" width="50" (click)="changePanel('meme')"/>
+                                <br><br>
+                                <span>Meme Generator</span>                            
                             </div>
                             <!-- <div class="col-sm-6 pointer mt-5">
                                 <img src="assets/img/stock-market.png" class="img-fluid" width="50" />
