@@ -200,6 +200,29 @@
                 </div>
             </div>
 
+            <!--Top 4 Crypto-->
+            <div class="row" id="meme" [ngClass]="{'display-hide': apps_now != 'top_4_crypto'}">
+
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                </div>
+                <div class="col-sm-12 mt-5 ">
+                    <p class="text-center display-4 text-center">Top 4 Cryptocurrency</p>
+                    <div class="card shadow mt-5" style="background-color:black; height:840px; border: 0px solid white; overflow-y: scroll;">
+                        <div class="card-body">
+                            <div class="row p-2">
+                                <div class="col-sm-12" *ngFor="let c of cryptoList;">
+                                    <!-- <span style="color:#faab00">{{c}}</span> | {{current_forex[f]}} -->
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+
             <div class="row" id="apps-panel" [ngClass]="{'display-hide': apps_now != 'apps-panel'}">
 
                 <div class="col-sm-12">
@@ -229,17 +252,11 @@
                                 <br><br>
                                 <span>Meme Generator</span>                            
                             </div>
-                            <!-- <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/stock-market.png" class="img-fluid" width="50" />
+                            <div class="col-sm-6 pointer mt-5">
+                                <img src="assets/img/cryptocurrencies-growing-up.png" class="img-fluid" width="50" (click)="changePanel('top_4_crypto')"/>
                                 <br><br>
-                                <span>Stock</span>
+                                <span>Top 4 Cryptocurrency Price</span>                            
                             </div>
-                            <div class="col-sm-6 pointer mt-5" id="app-panel-browser-btn" (click)="changePanel('browser')">
-                                <img src="assets/img/web-search-engine.png" class="img-fluid" width="50" />
-                                <br><br>
-                                <span>Web Search</span>
-                            </div>
-                             -->
                         </div>
                     </div>
                 </div>
