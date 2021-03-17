@@ -212,7 +212,15 @@
                         <div class="card-body">
                             <div class="row p-2">
                                 <div class="col-sm-12" *ngFor="let c of _cryptoList;">
-                                    {{c.}}
+                                    <div class="row">
+                                        <div class="col">
+                                            {{c.asset_id}}
+                                        </div>
+                                        <div class="col-auto">
+                                            <span style="color:#faab00">Price in USD:</span> {{c.price_usd}}
+                                        </div>
+                                    </div>
+                                   
                                     <!-- <span style="color:#faab00">{{c}}</span> | {{current_forex[f]}} -->
                                     <hr>
                                 </div>

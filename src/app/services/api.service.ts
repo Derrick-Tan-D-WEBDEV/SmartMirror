@@ -101,4 +101,11 @@ export class APIService {
     }),
     catchError(this.handleError));
   }
+  getAllCryptoAPI_data():Observable<any>{
+    return this.httpClient.get<any>(this.base_path+'getAllCryptoAPI_data.php').pipe(
+      map((res) => {
+        return res;
+    }),
+    catchError(this.handleError));
+  }
 }

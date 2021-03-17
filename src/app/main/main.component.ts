@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
   forexKeyList:any = [];
 
   
-  apps_now:any = "top_4_crypto";
+  apps_now:any = "home";
   surf_path:any;
 
   _news_title:any = "asd";
@@ -49,6 +49,8 @@ export class MainComponent implements OnInit {
   _fuel_diesel:any = 0;
 
   _meme_url:any = "";
+
+  _cryptoList:any = [];
   constructor(private _APIService: APIService,private _elementRef:ElementRef, protected _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -70,6 +72,7 @@ export class MainComponent implements OnInit {
     this.getAllForexAPI_data("EUR");
     this.getAllForexAPI_data("GBP");
     this.getAllFuelAPI_data();
+    this.getAllCryptoAPI_data();
 
     this.current_forex = this.forex[this.forexSelected];
     this.getRandomFoodAPI_data();
@@ -203,6 +206,14 @@ export class MainComponent implements OnInit {
         this._meme_url = v.url
       });    
   }
+
+  getAllCryptoAPI_data(){
+    this._APIService.getAllCryptoAPI_data().subscribe(
+      v =>{
+        this._cryptoList = v.data.db_result;
+      });    
+  }
+
 
 
   changeWeatherAPI_data(){
