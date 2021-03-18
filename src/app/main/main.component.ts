@@ -43,6 +43,7 @@ export class MainComponent implements OnInit {
   _food_address:any = "";
   _food_price:any = "";
   _food_phone:any = "";
+  _food_qr_code:any = "";
 
   _fuel_ron95:any = 0;
   _fuel_ron97:any = 0;
@@ -153,6 +154,9 @@ export class MainComponent implements OnInit {
         this._food_rating= v[0]["rating"];
         this._food_price = v[0]["price"];
         this._food_phone = v[0]["phone"];
+        var url = "https://maps.google.com/?q=";
+        var URI_name = encodeURI(this._food_store_name);
+        this._food_qr_code = url + URI_name;
       });    
   }
 

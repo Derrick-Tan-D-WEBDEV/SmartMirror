@@ -108,6 +108,11 @@
                                         Ratings: {{_food_rating}}<br>
                                         <span *ngIf="_food_price">Price: {{_food_price}}<br></span>
                                         <span *ngIf="_food_phone">Phone: {{_food_phone}}</span>
+                                        <div class="text-center mt-4">
+                                            <div>Scan To Get Location!</div>
+                                            <qrcode [qrdata]="_food_qr_code" [width]="120" [errorCorrectionLevel]="'M'"></qrcode>
+                                        </div>
+    
                                     </div>
                                     <button class="btn btn-warning btn-block btn-lg mt-5" style="font-size:30px" (click)="changeFood()">Find Another Food?</button>
                                 </div>
