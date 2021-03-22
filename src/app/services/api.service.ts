@@ -27,7 +27,7 @@ export class APIService {
       'Something bad happened; please try again later.');
   };
 
-  base_path = 'http://192.168.31.61/SmartMirrorAPI/API/';
+  base_path = 'http://192.168.31.53/SmartMirrorAPI/API/';
 
   getAllWeatherAPI_data(location):Observable<any>{
     return this.httpClient.post<any>(this.base_path+'getAllWeatherAPI_data.php',{location}).pipe(

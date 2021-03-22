@@ -21,6 +21,7 @@
     "@angular/router": "~11.0.9",
     "@sebgroup/magic-iframe": "^1.1.2",
     "@types/jquery": "^3.5.5",
+    "angular-responsive-carousel": "^2.0.2",
     "angularx-qrcode": "^11.0.0",
     "ni-clock": "0.0.5",
     "rxjs": "~6.6.0",
