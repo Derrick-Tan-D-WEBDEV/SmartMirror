@@ -49,12 +49,12 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-sm-12 mt-5">
-                    <div class="wrap">
-                        <iframe class="frame" src="https://app.developer.here.com/coronavirus/" frameborder="0"></iframe>
-                    </div>
+                <div class="col-sm-12 mt-5">
+                    <carousel
+                    [images]="images" [cellsToShow]="1" [height]="500" [autoplay]="true" [arrows]="false">
+                    </carousel>
 
-                </div> -->
+                </div>
             </div>
             <!--News-->
             <div class="row" id="news" [ngClass]="{'display-hide': apps_now != 'news'}">

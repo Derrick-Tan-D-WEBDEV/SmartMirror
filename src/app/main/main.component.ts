@@ -12,6 +12,13 @@ export class MainComponent implements OnInit {
   weather_data:any = [];
   no:any = 1;
 
+  images = [
+      {path: 'assets/img/greatech/1.jpg'},
+      {path: 'assets/img/greatech/2.jpg'},
+      {path: 'assets/img/greatech/3.jpg'},
+      {path: 'assets/img/greatech/4.jpg'}
+  ];
+
   news:any = [];
 
   forex:any = {};
