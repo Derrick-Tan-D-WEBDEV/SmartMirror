@@ -50,10 +50,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 mt-5">
-                    <carousel
-                    [images]="images" [cellsToShow]="1" [height]="500" [autoplay]="true" [arrows]="false">
-                    </carousel>
-
+                    <carousel #myCarousel (events)="handleCarouselEvents($event)" [images]="images" [cellWidth]="'100%'" [loop]="true" [height]="500" [dots]="true" [lightDOM]="true" [autoplay]="true" [autoplayInterval]="1500"  [overflowCellsLimit]="1"> </carousel>
                 </div>
             </div>
             <!--News-->
