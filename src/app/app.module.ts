@@ -8,6 +8,7 @@ import { MainComponent } from './main/main.component';
 import { NiClockModule } from 'ni-clock';
 import { FormsModule } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     HttpClientModule,
     NiClockModule,
     FormsModule,
-    QRCodeModule
+    QRCodeModule,
+    IvyCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
