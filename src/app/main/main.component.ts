@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
   forexKeyList:any = [];
 
   
-  apps_now:any = "home";
+  apps_now:any = "fuel";
   surf_path:any;
 
   _news_title:any = "asd";
