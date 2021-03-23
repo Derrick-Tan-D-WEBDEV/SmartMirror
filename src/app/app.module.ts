@@ -9,6 +9,7 @@ import { NiClockModule } from 'ni-clock';
 import { FormsModule } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { YoutubeMusicPlayerModule } from 'youtube-music-player';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     NiClockModule,
     FormsModule,
     QRCodeModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    YoutubeMusicPlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

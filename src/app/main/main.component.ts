@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { APIService } from '../services/api.service';
 import Swal from 'sweetalert2'
 import { DomSanitizer } from '@angular/platform-browser';
+import { YoutubeMusicPlayerService } from 'youtube-music-player';
 declare var $: any;
 @Component({
   selector: 'app-main',
@@ -27,7 +28,7 @@ export class MainComponent implements OnInit {
   forexKeyList:any = [];
 
   
-  apps_now:any = "greatech_career";
+  apps_now:any = "home";
   surf_path:any;
 
   _news_title:any = "asd";
@@ -73,7 +74,8 @@ export class MainComponent implements OnInit {
   _stockList:any = [];
 
   _careerList:any = [];
-  constructor(private _APIService: APIService,private _elementRef:ElementRef, protected _sanitizer: DomSanitizer) { }
+  
+  constructor(private _APIService: APIService,private _elementRef:ElementRef, protected _sanitizer: DomSanitizer,private ympService : YoutubeMusicPlayerService) { }
 
   ngOnInit(): void {
 
@@ -107,6 +109,7 @@ export class MainComponent implements OnInit {
     console.log(this.forex);
     setInterval(this.showDate, 1000);
     setInterval(() => { this.changeWeatherAPI_data(); }, 5000);
+
 
   }
 
