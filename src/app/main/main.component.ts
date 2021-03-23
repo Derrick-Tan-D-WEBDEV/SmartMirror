@@ -27,7 +27,7 @@ export class MainComponent implements OnInit {
   forexKeyList:any = [];
 
   
-  apps_now:any = "home";
+  apps_now:any = "greatech_career";
   surf_path:any;
 
   _news_title:any = "asd";
@@ -59,6 +59,20 @@ export class MainComponent implements OnInit {
   _meme_url:any = "";
 
   _cryptoList:any = [];
+
+  _gs_market_cap:any = "";
+  _gs_nosh:any = "";
+  _gs_avg_volume:any = "";
+  _gs_4weeks_range:any = "";
+  _gs_weekspricevolatility:any = "";
+  _gs_52weeksrange:any = "";
+  _gs_weeksrangevolatility:any = "";
+  _gs_avgpricetarget:any = "";
+  _gs_pricetarget:any = "";
+
+  _stockList:any = [];
+
+  _careerList:any = [];
   constructor(private _APIService: APIService,private _elementRef:ElementRef, protected _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -81,6 +95,9 @@ export class MainComponent implements OnInit {
     this.getAllForexAPI_data("GBP");
     this.getAllFuelAPI_data();
     this.getAllCryptoAPI_data();
+    this.getAllGSAPI_data();
+    this.getAllStockAPI_data();
+    this.getAllCareerAPI_data();
 
     this.current_forex = this.forex[this.forexSelected];
     this.getRandomFoodAPI_data();
@@ -225,7 +242,42 @@ export class MainComponent implements OnInit {
       });    
   }
 
+  getAllGSAPI_data(){
+    this._APIService.getAllGSAPI_data().subscribe(
+      v =>{
+        console.log(v);
+        // _gs_4weeks_range:any = "";
+        // _gs_weekspricevolatility:any = "";
+        // _gs_52weeksrange:any = "";
+        // _gs_weeksrangevolatility:any = "";
+        // _gs_avgpricetarget:any = "";
+        // _gs_pricetarget:any = "";
+        this._gs_market_cap = v.data.db_result.marketcap;
+        this._gs_nosh = v.data.db_result.nosh;
+        this._gs_avg_volume = v.data.db_result.avg_volume;
+        this._gs_4weeks_range = v.data.db_result["4weeksrange"];
+        this._gs_weekspricevolatility = v.data.db_result.weekspricevolatility;
+        this._gs_52weeksrange = v.data.db_result["52weeksrange"];
+        this._gs_weeksrangevolatility = v.data.db_result.weeksrangevolatility;
+        this._gs_avgpricetarget = v.data.db_result.avgpricetarget;
+        this._gs_pricetarget = v.data.db_result.pricetarget;
+      });    
+  }
 
+  getAllStockAPI_data(){
+    this._APIService.getAllStockAPI_data().subscribe(
+      v =>{
+        this._stockList = v.data.db_result;
+      });    
+  }
+
+  getAllCareerAPI_data(){
+    this._APIService.getAllCareerAPI_data().subscribe(
+      v =>{
+        console.log(v.data.db_result);
+        this._careerList = v.data.db_result;
+      });    
+  }
 
   changeWeatherAPI_data(){
  
@@ -251,50 +303,6 @@ export class MainComponent implements OnInit {
       batukawan.style.display = 'block';
     }
   }
-
-  // openAppsPanel(){
-  //   Swal.fire({
-  //     html:
-  //     `
-        // <div class="text-white">
-        //   <h2><span class="badge badge-light">Apps</span></h2>
-        //   <div class="row">
-        //     <div class="col-sm-6 pointer mt-5">
-        //       <img src="assets/img/minecraft.png" class="img-fluid" width="50" />
-        //       <br><br>
-        //       <span>Minecraft</span>
-        //     </div>
-        //     <div class="col-sm-6 pointer mt-5">
-        //       <img src="assets/img/stock-market.png" class="img-fluid" width="50" />
-        //       <br><br>
-        //       <span>Stock</span>
-        //     </div>
-        //     <div class="col-sm-6 pointer mt-5" id="app-panel-browser-btn">
-        //       <img src="assets/img/web-search-engine.png" class="img-fluid" width="50" />
-        //       <br><br>
-        //       <span>Web Search</span>
-        //     </div>
-        //     <div class="col-sm-6 pointer mt-5">
-        //       <img src="assets/img/fast-food.png" class="img-fluid" width="50" />
-        //       <br><br>
-        //       <span>Random Food</span>
-        //     </div>
-        //   </div>
-        // </div>
-  //     `,
-  //     width: 700,
-  //     padding: '3em',
-  //     background: '#232323',
-  //     backdrop: `
-  //       rgba(0,0,0,0.7)
-  //     `,
-  //     showCloseButton: true,
-  //     showConfirmButton: false
-  //   });
-  //   //.addEventListener('click', (evt: Event) => this.changePanel('browser'));
-  //   console.log(this._elementRef.nativeElement.querySelector('#app-panel-browser-btn'));
-
-  // }
 
 
   changePanel(apps){

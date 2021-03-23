@@ -101,8 +101,33 @@ export class APIService {
     }),
     catchError(this.handleError));
   }
+
   getAllCryptoAPI_data():Observable<any>{
     return this.httpClient.get<any>(this.base_path+'getAllCryptoAPI_data.php').pipe(
+      map((res) => {
+        return res;
+    }),
+    catchError(this.handleError));
+  }
+
+  getAllGSAPI_data():Observable<any>{
+    return this.httpClient.get<any>(this.base_path+'getAllGSAPI_data.php').pipe(
+      map((res) => {
+        return res;
+    }),
+    catchError(this.handleError));
+  }
+
+  getAllStockAPI_data():Observable<any>{
+    return this.httpClient.get<any>(this.base_path+'getAllStockAPI_data.php').pipe(
+      map((res) => {
+        return res;
+    }),
+    catchError(this.handleError));
+  }
+
+  getAllCareerAPI_data():Observable<any>{
+    return this.httpClient.get<any>(this.base_path+'getAllCareerAPI_data.php').pipe(
       map((res) => {
         return res;
     }),
