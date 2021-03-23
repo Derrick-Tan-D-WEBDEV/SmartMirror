@@ -25,8 +25,8 @@ hr{
     border-radius: 15px;
     padding:20px;
     overflow-y: scroll;
-    min-height: 1000px;
-    max-height: 1000px;
+    min-height: 1600px;
+    max-height: 1600px;
 }
 
 ::-webkit-scrollbar {

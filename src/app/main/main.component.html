@@ -49,21 +49,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 mt-5">
-                    <carousel #myCarousel (events)="handleCarouselEvents($event)" [images]="images" [cellWidth]="'100%'" [loop]="true" [height]="500" [dots]="true" [lightDOM]="true" [autoplay]="true" [autoplayInterval]="1500"  [overflowCellsLimit]="1"> </carousel>
+                <div class="col-sm-12 mt-5 text-center">
+                    <h2>Together . We . Create . Posibilities</h2>
+                    <br>
+                    <carousel #myCarousel  [images]="images" [cellWidth]="'100%'" [loop]="true" [height]="500" [dots]="true" [lightDOM]="true" [autoplay]="true" [autoplayInterval]="1500"  [overflowCellsLimit]="1"> </carousel>
                 </div>
             </div>
             <!--News-->
             <div class="row" id="news" [ngClass]="{'display-hide': apps_now != 'news'}">
 
                 <div class="col-sm-12">
-                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
                 </div>
                 <div class="col-sm-12 mt-5 text-center">
                     <p class="text-center display-5">{{_news_title}}</p>
                     <img [src]="_news_image" height="300" />
                 
-                    <div class="card shadow mt-5" style="background-color:black; height:600px; overflow-y: scroll;">
+                    <div class="card shadow mt-5" style="background-color:black; height:1200px; overflow-y: scroll;">
                         <div class="card-body">
                             <p class="text-left" [innerHTML]="_news_content">
                                <!-- {{_news_content}} -->
@@ -76,7 +78,7 @@
             <div class="row" id="randomfood" [ngClass]="{'display-hide': apps_now != 'randomfood'}">
 
                 <div class="col-sm-12">
-                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
                 </div>
                 <div class="col-sm-12 mt-5 text-center" *ngIf="randomDone == 0">
                     <p class="text-center display-4">Random Food</p>
@@ -94,8 +96,8 @@
                         <div class="card-body">
                             <div class=" row">
                                 <div class="col-12 text-center">
-                                    <img src="{{_food_image}}" *ngIf="_food_image" style="height:300px;"/>
-                                    <img src="assets/img/no-photo.png" *ngIf="!_food_image" style="height:300px;"/>
+                                    <img src="{{_food_image}}" *ngIf="_food_image" style="height:600px;"/>
+                                    <img src="assets/img/no-photo.png" *ngIf="!_food_image" style="height:600px;"/>
                                     <h2 *ngIf="!_food_image">No photo available!</h2>
                                     <hr>
                                     <h3>{{_food_store_name}}</h3>
@@ -124,7 +126,7 @@
             <div class="row" id="forex" [ngClass]="{'display-hide': apps_now != 'forex'}">
 
                 <div class="col-sm-12">
-                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
                 </div>
                 <div class="col-sm-12 mt-5 ">
                     <p class="text-center display-5 text-center">EUR/GBP Forex Exchange</p>
@@ -151,24 +153,24 @@
             <div class="row" id="forex" [ngClass]="{'display-hide': apps_now != 'fuel'}">
 
                 <div class="col-sm-12">
-                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
                 </div>
                 <div class="col-sm-12 mt-5 ">
                     <p class="text-center display-4 text-center">Fuel Price</p>
-                    <div class="card shadow mt-5" style="background-color:black; height:840px; border: 0px solid white; overflow-y: scroll;">
+                    <div class="card shadow mt-5" style="background-color:black; height:1200px; border: 0px solid white; overflow-y: scroll;">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-4 text-center">
-                                    <img src="assets/img/fuel/ron95.png" width="200" style="margin-bottom:15px;margin-bottom: 30px;">
-                                    <h3>RM {{_fuel_ron95}}</h3>
+                                <div class="col-12 text-center">
+                                    <img src="assets/img/fuel/ron95.png" width="500" >
+                                    <h2>RM {{_fuel_ron95}}</h2>
                                 </div>
-                                <div class="col-4 text-center">
-                                    <img src="assets/img/fuel/ron97.png" width="230" style="height:30px; margin-bottom:30px;">
-                                    <h3>RM {{_fuel_ron97}}</h3>
+                                <div class="col-12 text-center mt-5">
+                                    <img src="assets/img/fuel/ron97.png" width="530">
+                                    <h2>RM {{_fuel_ron97}}</h2>
                                 </div>
-                                <div class="col-4 text-center">
-                                    <img src="assets/img/fuel/diesel.png" style="margin-top:-20px; margin-bottom:20px;" width="200">
-                                    <h3>RM {{_fuel_diesel}}</h3>
+                                <div class="col-12 text-center mt-5">
+                                    <img src="assets/img/fuel/diesel.png"  width="500">
+                                    <h2>RM {{_fuel_diesel}}</h2>
                                 </div>
                                 
                             </div>
@@ -182,11 +184,11 @@
             <div class="row" id="meme" [ngClass]="{'display-hide': apps_now != 'meme'}">
 
                 <div class="col-sm-12">
-                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
                 </div>
                 <div class="col-sm-12 mt-5 ">
                     <p class="text-center display-4 text-center">Meme Generator</p>
-                    <div class="card shadow mt-5" style="background-color:black; height:800px; border: 0px solid white; overflow-y: scroll;">
+                    <div class="card shadow mt-5" style="background-color:black; height:1200px; border: 0px solid white; overflow-y: scroll;">
                         <div class="card-body">
                             <div class="row p-2">
                                 <div class="col-12 text-center">
@@ -205,11 +207,11 @@
             <div class="row" id="meme" [ngClass]="{'display-hide': apps_now != 'top_4_crypto'}">
 
                 <div class="col-sm-12">
-                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back</button>
+                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
                 </div>
                 <div class="col-sm-12 mt-5 ">
                     <p class="text-center display-4 text-center">Top 4 Cryptocurrency</p>
-                    <div class="card shadow mt-5" style="background-color:black; height:840px; border: 0px solid white; overflow-y: scroll;">
+                    <div class="card shadow mt-5" style="background-color:black; height:1200px; border: 0px solid white; overflow-y: scroll;">
                         <div class="card-body">
                             <div class="row p-2">
                                 <div class="col-sm-12" *ngFor="let c of _cryptoList;">
@@ -236,36 +238,36 @@
             <div class="row" id="apps-panel" [ngClass]="{'display-hide': apps_now != 'apps-panel'}">
 
                 <div class="col-sm-12">
-                    <button class="btn btn-outline-light" (click)="changePanel('home')">< Back to Home</button>
+                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back to Home</button>
                 </div>
                 <div class="col-sm-12 mt-5" >
                     <div class="text-white text-center" id="panel-scroll-apps">
                         <h2><span class="badge badge-light">Apps</span></h2>
                         <div class="row">
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/exchange.png" class="img-fluid" width="50" (click)="changePanel('forex')"/>
+                                <img src="assets/img/exchange.png" class="img-fluid" width="100" (click)="changePanel('forex')"/>
                                 <br><br>
-                                <span>EUR/GBP Forex Rate</span>
+                                <span style="font-size:25px">EUR/GBP Forex Rate</span>
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/fast-food.png" class="img-fluid" width="50" (click)="changePanel('randomfood')"/>
+                                <img src="assets/img/fast-food.png" class="img-fluid" width="100" (click)="changePanel('randomfood')"/>
                                 <br><br>
-                                <span>Random Food</span>
+                                <span style="font-size:25px">Random Food</span>
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/gas-station.png" class="img-fluid" width="50" (click)="changePanel('fuel')"/>
+                                <img src="assets/img/gas-station.png" class="img-fluid" width="100" (click)="changePanel('fuel')"/>
                                 <br><br>
-                                <span>Fuel Price</span>                            
+                                <span style="font-size:25px">Fuel Price</span>                            
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/tongue-out.png" class="img-fluid" width="50" (click)="changePanel('meme')"/>
+                                <img src="assets/img/tongue-out.png" class="img-fluid" width="100" (click)="changePanel('meme')"/>
                                 <br><br>
-                                <span>Meme Generator</span>                            
+                                <span style="font-size:25px">Meme Generator</span>                            
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/cryptocurrencies-growing-up.png" class="img-fluid" width="50" (click)="changePanel('top_4_crypto')"/>
+                                <img src="assets/img/cryptocurrencies-growing-up.png" class="img-fluid" width="100" (click)="changePanel('top_4_crypto')"/>
                                 <br><br>
-                                <span>Top 4 Cryptocurrency Price</span>                            
+                                <span style="font-size:25px">Top 4 Cryptocurrency Price</span>                            
                             </div>
                         </div>
                     </div>
