@@ -35,7 +35,7 @@ hr{
 }
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-    background: #FF0000;
+    background: rgba(0,0,0,0);
 }
 
 .wrap {

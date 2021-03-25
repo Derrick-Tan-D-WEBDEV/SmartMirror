@@ -3,6 +3,7 @@ import { APIService } from '../services/api.service';
 import Swal from 'sweetalert2'
 import { DomSanitizer } from '@angular/platform-browser';
 import { YoutubeMusicPlayerService } from 'youtube-music-player';
+import * as cocoSSD from '@tensorflow-models/coco-ssd';
 declare var $: any;
 @Component({
   selector: 'app-main',
@@ -28,7 +29,7 @@ export class MainComponent implements OnInit {
   forexKeyList:any = [];
 
   
-  apps_now:any = "fuel";
+  apps_now:any = "facemask";
   surf_path:any;
 
   _news_title:any = "asd";
@@ -75,6 +76,9 @@ export class MainComponent implements OnInit {
 
   _careerList:any = [];
   
+
+  private video: HTMLVideoElement;
+
   constructor(private _APIService: APIService,private _elementRef:ElementRef, protected _sanitizer: DomSanitizer,private ympService : YoutubeMusicPlayerService) { }
 
   ngOnInit(): void {
@@ -110,7 +114,12 @@ export class MainComponent implements OnInit {
     setInterval(this.showDate, 1000);
     setInterval(() => { this.changeWeatherAPI_data(); }, 5000);
 
-
+    setInterval(() => { 
+      var iframe = document.getElementById("facemask-iframe");
+      //@ts-ignore
+      var _words = iframe.contentWindow.document.getElementById("remind");
+      console.log(_words);
+    }, 4000);
   }
 
 
@@ -350,5 +359,82 @@ export class MainComponent implements OnInit {
     this.getRandomMemeAPI_data();
 
   }
+
+  public async predictWithCocoModel(){
+    const model = await cocoSSD.load();
+    this.detectFrame(this.video,model);
+    console.log('model loaded');
+  }
+  
+    webcam_init()
+    {  
+      this.video = <HTMLVideoElement> document.getElementById("vid");
+    
+       navigator.mediaDevices
+      .getUserMedia({
+      audio: false,
+      video: {
+        facingMode: "user",
+      }
+       })
+      .then(stream => {
+      this.video.srcObject = stream;
+      this.video.onloadedmetadata = () => {
+        this.video.play();
+      };
+      });
+    }
+    
+    detectFrame = (video, model) => {
+      console.log(video)
+      model.detect(video).then(predictions => {
+        this.renderPredictions(predictions);
+        requestAnimationFrame(() => {
+          this.detectFrame(video, model);
+        });
+      });
+    }
+  
+    renderPredictions = predictions => {
+      const canvas = <HTMLCanvasElement> document.getElementById("canvas");
+      
+      const ctx = canvas.getContext("2d");
+      
+      canvas.width  = 300;
+      canvas.height = 300;
+  
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      // Font options.
+      const font = "16px sans-serif";
+      ctx.font = font;
+      ctx.textBaseline = "top";
+      ctx.drawImage(this.video,0, 0,300,300);
+  
+      predictions.forEach(prediction => {
+        const x = prediction.bbox[0];
+        const y = prediction.bbox[1];
+        const width = prediction.bbox[2];
+        const height = prediction.bbox[3];
+        // Draw the bounding box.
+        ctx.strokeStyle = "#00FFFF";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x, y, width, height);
+        // Draw the label background.
+        ctx.fillStyle = "#00FFFF";
+        const textWidth = ctx.measureText(prediction.class).width;
+        const textHeight = parseInt(font, 10); // base 10
+        ctx.fillRect(x, y, textWidth + 4, textHeight + 4);
+      });
+  
+      predictions.forEach(prediction => {
+        const x = prediction.bbox[0];
+        const y = prediction.bbox[1];
+        // Draw the text last to ensure it's on top.
+        ctx.fillStyle = "#000000";
+        ctx.fillText(prediction.class, x, y);
+      });
+    };
+  
+  
 }
 

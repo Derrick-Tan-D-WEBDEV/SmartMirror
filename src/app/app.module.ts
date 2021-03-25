@@ -10,11 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { YoutubeMusicPlayerModule } from 'youtube-music-player';
+import { DetectionComponent } from './detection/detection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    DetectionComponent
   ],
   imports: [
     BrowserModule,
