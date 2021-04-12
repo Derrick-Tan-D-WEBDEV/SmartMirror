@@ -335,6 +335,36 @@
                 </div>
             </div>
 
+            <!-- Smart Farming -->
+            <div class="row" id="smart_farming" [ngClass]="{'display-hide': apps_now != 'smart_farming'}">
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
+                </div>
+                <div class="col-sm-12 mt-5 ">
+                    <p class="text-center display-4 text-center">Smart Farming Agritech</p>
+                    <div class="card shadow mt-5" style="background-color:black; height:1450px; border: 0px solid white; overflow-y: scroll;">
+                        <div class="card-body text-left">
+                            <iframe src="http://192.168.31.114/plants/Vis/index2.php" width="1000" height="1350" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading Corner Temp -->
+            <div class="row" id="reading_corner" [ngClass]="{'display-hide': apps_now != 'reading_corner'}">
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
+                </div>
+                <div class="col-sm-12 mt-5 ">
+                    <p class="text-center display-4 text-center">Reading Corner</p>
+                    <div class="card shadow mt-5" style="background-color:black; height:1450px; border: 0px solid white; overflow-y: scroll;">
+                        <div class="card-body text-left">
+                            <iframe src="https://192.168.31.114/Plants/Vis/possibilities_room.php" width="1000" height="1350" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row" id="apps-panel" [ngClass]="{'display-hide': apps_now != 'apps-panel'}">
 
                 <div class="col-sm-12">
@@ -385,9 +415,19 @@
                                 <span style="font-size:25px">Greatech Career</span>                            
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/career.png" class="img-fluid" width="100" (click)="changePanel('hydroponic')"/>
+                                <img src="assets/img/face-mask.png" class="img-fluid" width="100" (click)="changePanel('facemask')"/>
                                 <br><br>
-                                <span style="font-size:25px">Hydroponic</span>                            
+                                <span style="font-size:25px">Facemask Detection</span>                            
+                            </div>
+                            <div class="col-sm-6 pointer mt-5">
+                                <img src="assets/img/plant.png" class="img-fluid" width="100" (click)="changePanel('smart_farming')"/>
+                                <br><br>
+                                <span style="font-size:25px">Smart Farming</span>                            
+                            </div>
+                            <div class="col-sm-6 pointer mt-5">
+                                <img src="assets/img/read.png" class="img-fluid" width="100" (click)="changePanel('reading_corner')"/>
+                                <br><br>
+                                <span style="font-size:25px">Reading Corner</span>                            
                             </div>
                         </div>
                     </div>
