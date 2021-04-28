@@ -124,7 +124,7 @@
             </div>
 
             <!--Forex-->
-            <div class="row" id="forex" [ngClass]="{'display-hide': apps_now != 'forex'}">
+            <!-- <div class="row" id="forex" [ngClass]="{'display-hide': apps_now != 'forex'}">
 
                 <div class="col-sm-12">
                     <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
@@ -148,7 +148,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!--Fuel-->
             <div class="row" id="forex" [ngClass]="{'display-hide': apps_now != 'fuel'}">
@@ -246,17 +246,14 @@
                     <div class="card shadow mt-5" style="background-color:black; height:1500px; border: 0px solid white; overflow-y: scroll;">
                         <div class="card-body text-left">
                             <h2 class=" text-center"><img src="assets/img/logo-greatech.png" class="img-fluid" width="800"/></h2>
-                            <h2 class="mt-5" style="color:#faab00">Price <span style="color:white;"> : {{_gs_cure}}</span></h2> 
+                            <h2 class="mt-5" style="color:#faab00">Price <span style="color:white;"> : {{_gs_price}}</span></h2> 
                             <br><br>
-                            <h2 class="mt-5" style="color:#faab00">Market Cap <span style="color:white;"> : {{_gs_market_cap}}</span></h2> 
-                            <h2 class="mt-5" style="color:#faab00">Nosh <span style="color:white;"> : {{_gs_nosh}}</span></h2> 
-                            <h2 class="mt-5" style="color:#faab00">Average Volume <span style="color:white;"> : {{_gs_avg_volume}}</span></h2> 
-                            <h2 class="mt-5" style="color:#faab00">4 Weeks Range <span style="color:white;"> : {{_gs_4weeks_range}}</span></h2> 
-                            <h2 class="mt-5" style="color:#faab00">52 Weeks Price Votality <span style="color:white;"> : {{_gs_weekspricevolatility}}</span></h2> 
-                            <h2 class="mt-5" style="color:#faab00">52 Weeks Range <span style="color:white;"> : {{_gs_52weeksrange}}</span></h2> 
-                            <h2 class="mt-5" style="color:#faab00">52 Weeks Range Votality <span style="color:white;"> : {{_gs_weeksrangevolatility}}</span></h2> 
-                            <h2 class="mt-5" style="color:#faab00">Average Price Target <span style="color:white;"> : {{_gs_avgpricetarget}}</span></h2> 
-                            <h2 class="mt-5" style="color:#faab00">Price Target <span style="color:white;"> : {{_gs_pricetarget}}</span></h2> 
+                            <h2 class="mt-5" style="color:#faab00">Days High <span style="color:white;"> : {{_gs_dayshigh}}</span></h2> 
+                            <h2 class="mt-5" style="color:#faab00">Days Low <span style="color:white;"> : {{_gs_dayslow}}</span></h2> 
+                            <h2 class="mt-5" style="color:#faab00">Week High <span style="color:white;"> : {{_gs_weekshigh}}</span></h2> 
+                            <h2 class="mt-5" style="color:#faab00">Week Low <span style="color:white;"> : {{_gs_weekslow}}</span></h2> 
+                            <h2 class="mt-5" style="color:#faab00">Value Traded <span style="color:white;"> : {{_gs_valuetraded}}</span></h2> 
+                            <h2 class="mt-5" style="color:#faab00">Volume Traded <span style="color:white;"> : {{_gs_volumetraded}}</span></h2> 
                         </div>
                     </div>
                     
@@ -320,21 +317,6 @@
                 </div>
             </div>
 
-            <!-- Facemask -->
-            <div class="row" id="facemask" [ngClass]="{'display-hide': apps_now != 'facemask'}">
-                <div class="col-sm-12">
-                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
-                </div>
-                <div class="col-sm-12 mt-5 ">
-                    <p class="text-center display-4 text-center">Facemask Detection</p>
-                    <div class="card shadow mt-5" style="background-color:black; height:1450px; border: 0px solid white; overflow-y: scroll;">
-                        <div class="card-body text-left">
-                            <iframe src="https://192.168.31.114/Covid/" id="facemask-iframe" allow="camera;microphone" width="1000" height="1450" frameborder="0"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Smart Farming -->
             <div class="row" id="smart_farming" [ngClass]="{'display-hide': apps_now != 'smart_farming'}">
                 <div class="col-sm-12">
@@ -365,6 +347,21 @@
                 </div>
             </div>
 
+            <!-- Facemask -->
+            <div class="row" id="facemask" [ngClass]="{'display-hide': apps_now != 'facemask'}">
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
+                </div>
+                <div class="col-sm-12 mt-5 ">
+                    <p class="text-center display-4 text-center">Facemask Detection</p>
+                    <div class="card shadow mt-5" style="background-color:black; height:1450px; border: 0px solid white; overflow-y: scroll;">
+                        <div class="card-body text-left">
+                            <iframe src="https://192.168.31.114/Covid/" id="facemask-iframe" allow="camera;microphone" width="1000" height="1450" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row" id="apps-panel" [ngClass]="{'display-hide': apps_now != 'apps-panel'}">
 
                 <div class="col-sm-12">
@@ -374,28 +371,28 @@
                     <div class="text-white text-center" id="panel-scroll-apps">
                         <h1><span class="badge badge-light">Apps</span></h1>
                         <div class="row">
-                            <div class="col-sm-6 pointer mt-5">
+                            <!-- <div class="col-sm-6 pointer mt-5">
                                 <img src="assets/img/exchange.png" class="img-fluid" width="100" (click)="changePanel('forex')"/>
                                 <br><br>
                                 <span style="font-size:25px">EUR/GBP Forex Rate</span>
-                            </div>
+                            </div> -->
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/fast-food.png" class="img-fluid" width="100" (click)="changePanel('randomfood')"/>
+                                <img src="assets/img/fast-food.png" class="img-fluid" width="140" (click)="changePanel('randomfood')"/>
                                 <br><br>
                                 <span style="font-size:25px">Random Food</span>
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/gas-station.png" class="img-fluid" width="100" (click)="changePanel('fuel')"/>
+                                <img src="assets/img/gas-station.png" class="img-fluid" width="140" (click)="changePanel('fuel')"/>
                                 <br><br>
                                 <span style="font-size:25px">Fuel Price</span>                            
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/tongue-out.png" class="img-fluid" width="100" (click)="changePanel('meme')"/>
+                                <img src="assets/img/tongue-out.png" class="img-fluid" width="140" (click)="changePanel('meme')"/>
                                 <br><br>
                                 <span style="font-size:25px">Meme Generator</span>                            
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/cryptocurrencies-growing-up.png" class="img-fluid" width="100" (click)="changePanel('top_4_crypto')"/>
+                                <img src="assets/img/cryptocurrencies-growing-up.png" class="img-fluid" width="140" (click)="changePanel('top_4_crypto')"/>
                                 <br><br>
                                 <span style="font-size:25px">Top 4 Cryptocurrency Price</span>                            
                             </div>
@@ -405,27 +402,27 @@
                                 <span style="font-size:25px">Greatech Stock Price</span>                            
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/stock-market (1).png" class="img-fluid" width="100" (click)="changePanel('stock_price')"/>
+                                <img src="assets/img/stock-market (1).png" class="img-fluid" width="140" (click)="changePanel('stock_price')"/>
                                 <br><br>
                                 <span style="font-size:25px">Stock Price</span>                            
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/career.png" class="img-fluid" width="100" (click)="changePanel('greatech_career')"/>
+                                <img src="assets/img/career.png" class="img-fluid" width="140" (click)="changePanel('greatech_career')"/>
                                 <br><br>
                                 <span style="font-size:25px">Greatech Career</span>                            
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/face-mask.png" class="img-fluid" width="100" (click)="changePanel('facemask')"/>
+                                <img src="assets/img/face-mask.png" class="img-fluid" width="140" (click)="changePanel('facemask')"/>
                                 <br><br>
                                 <span style="font-size:25px">Facemask Detection</span>                            
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/plant.png" class="img-fluid" width="100" (click)="changePanel('smart_farming')"/>
+                                <img src="assets/img/plant.png" class="img-fluid" width="140" (click)="changePanel('smart_farming')"/>
                                 <br><br>
                                 <span style="font-size:25px">Smart Farming</span>                            
                             </div>
                             <div class="col-sm-6 pointer mt-5">
-                                <img src="assets/img/read.png" class="img-fluid" width="100" (click)="changePanel('reading_corner')"/>
+                                <img src="assets/img/read.png" class="img-fluid" width="140" (click)="changePanel('reading_corner')"/>
                                 <br><br>
                                 <span style="font-size:25px">Reading Corner</span>                            
                             </div>

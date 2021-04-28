@@ -62,17 +62,15 @@ export class MainComponent implements OnInit {
 
   _cryptoList:any = [];
 
-  _gs_market_cap:any = "";
-  _gs_nosh:any = "";
-  _gs_avg_volume:any = "";
-  _gs_4weeks_range:any = "";
-  _gs_weekspricevolatility:any = "";
-  _gs_52weeksrange:any = "";
-  _gs_weeksrangevolatility:any = "";
-  _gs_avgpricetarget:any = "";
-  _gs_pricetarget:any = "";
   _gs_price:any = "";
-  
+  _gs_dayshigh:any = "";
+  _gs_dayslow:any = "";
+  _gs_weekshigh:any = "";
+  _gs_weekslow:any = "";
+  _gs_valuetraded:any = "";
+  _gs_volumetraded:any = "";
+
+
   _stockList:any = [];
 
   _careerList:any = [];
@@ -98,8 +96,8 @@ export class MainComponent implements OnInit {
     this.getAllNewsAPI_data();
     this.getOneQuote_data();
     this.getCovidAPI_data();
-    this.getAllForexAPI_data("EUR");
-    this.getAllForexAPI_data("GBP");
+    // this.getAllForexAPI_data("EUR");
+    // this.getAllForexAPI_data("GBP");
     this.getAllFuelAPI_data();
     this.getAllCryptoAPI_data();
     this.getAllGSAPI_data();
@@ -216,6 +214,7 @@ export class MainComponent implements OnInit {
   getAllForexAPI_data(base){
     this._APIService.getAllForexAPI_data(base).subscribe(
       v =>{
+        console.log(v);
         this.forex[base] = v;
       });
   }
@@ -254,21 +253,35 @@ export class MainComponent implements OnInit {
         this._cryptoList = v.data.db_result;
       });    
   }
-
+  // board: "Board\nMain Market"
+  // change_rm: "0.060"
+  // changepercentage: "1.00%"
+  // dayshigh: "6.030"
+  // dayslow: "5.920"
+  // marketcapital: "7,436,880,000"
+  // noofsharedissued: "1,252,000,000"
+  // open: "6.030"
+  // previousclose: "6.000"
+  // price: "5.940"
+  // sector: "Technology"
+  // shareperlot: "100"
+  // shariah: "Yes"
+  // stockcode: "GREATEC - 0208"
+  // valuetraded: "6,522,805"
+  // volumetraded: "1,095,800"
+  // weekshigh: "9.900"
+  // weekslow: "2.250"
   getAllGSAPI_data(){
     this._APIService.getAllGSAPI_data().subscribe(
       v =>{
         console.log(v);
-        this._gs_price = v.data.db.dn_result.price;
-        this._gs_market_cap = v.data.db_result.marketcap;
-        this._gs_nosh = v.data.db_result.nosh;
-        this._gs_avg_volume = v.data.db_result.avg_volume;
-        this._gs_4weeks_range = v.data.db_result["4weeksrange"];
-        this._gs_weekspricevolatility = v.data.db_result.weekspricevolatility;
-        this._gs_52weeksrange = v.data.db_result["52weeksrange"];
-        this._gs_weeksrangevolatility = v.data.db_result.weeksrangevolatility;
-        this._gs_avgpricetarget = v.data.db_result.avgpricetarget;
-        this._gs_pricetarget = v.data.db_result.pricetarget;
+        this._gs_price = v.data.db_result.price;
+        this._gs_dayshigh = v.data.db_result.dayshigh;
+        this._gs_dayslow = v.data.db_result.dayslow;
+        this._gs_weekshigh = v.data.db_result.weekshigh;
+        this._gs_weekslow = v.data.db_result.weekslow;
+        this._gs_valuetraded = v.data.db_result.valuetraded;
+        this._gs_volumetraded= v.data.db_result.volumetraded;
       });    
   }
 

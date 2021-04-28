@@ -71,7 +71,7 @@ export class APIService {
   }
 
   getAllForexAPI_data(base):Observable<any>{
-    return this.httpClient.get<any>('https://api.exchangeratesapi.io/latest?base='+base).pipe(
+    return this.httpClient.get<any>('https://api.exchangeratesapi.io/latest?access_key=4bf84d2c6f4736991256773356c324ba&symbols='+base).pipe(
       map((res) => {
         return res;
     }),
