@@ -71,7 +71,8 @@ export class MainComponent implements OnInit {
   _gs_weeksrangevolatility:any = "";
   _gs_avgpricetarget:any = "";
   _gs_pricetarget:any = "";
-
+  _gs_price:any = "";
+  
   _stockList:any = [];
 
   _careerList:any = [];
@@ -258,12 +259,7 @@ export class MainComponent implements OnInit {
     this._APIService.getAllGSAPI_data().subscribe(
       v =>{
         console.log(v);
-        // _gs_4weeks_range:any = "";
-        // _gs_weekspricevolatility:any = "";
-        // _gs_52weeksrange:any = "";
-        // _gs_weeksrangevolatility:any = "";
-        // _gs_avgpricetarget:any = "";
-        // _gs_pricetarget:any = "";
+        this._gs_price = v.data.db.dn_result.price;
         this._gs_market_cap = v.data.db_result.marketcap;
         this._gs_nosh = v.data.db_result.nosh;
         this._gs_avg_volume = v.data.db_result.avg_volume;
