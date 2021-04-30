@@ -267,7 +267,7 @@
                     <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
                 </div>
                 <div class="col-sm-12 mt-5 ">
-                    <p class="text-center display-4 text-center">Stock Price</p>
+                    <p class="text-center display-4 text-center">US Stock Price</p>
                     <div class="card shadow mt-5" style="background-color:black; height:1450px; border: 0px solid white; overflow-y: scroll;">
                         <div class="card-body text-left">
                             <div class="col-sm-12" *ngFor="let s of _stockList;">
@@ -347,6 +347,21 @@
                 </div>
             </div>
 
+            <!-- Matterport VR -->
+            <div class="row" id="matterport" [ngClass]="{'display-hide': apps_now != 'matterport'}">
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-light" style="font-size:20px;" (click)="changePanel('home')">< Back</button>
+                </div>
+                <div class="col-sm-12 mt-5 ">
+                    <p class="text-center display-4 text-center">Matterport VR Showcase</p>
+                    <div class="card shadow mt-5" style="background-color:black; height:1450px; border: 0px solid white; overflow-y: scroll;">
+                        <div class="card-body text-left">"
+                            <iframe width="1000" height="600" src="https://my.matterport.com/show/?m=Lu8V2q29ju9" frameborder="0" allowfullscreen allow="xr-spatial-tracking"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Facemask -->
             <div class="row" id="facemask" [ngClass]="{'display-hide': apps_now != 'facemask'}">
                 <div class="col-sm-12">
@@ -404,7 +419,7 @@
                             <div class="col-sm-6 pointer mt-5">
                                 <img src="assets/img/stock-market (1).png" class="img-fluid" width="140" (click)="changePanel('stock_price')"/>
                                 <br><br>
-                                <span style="font-size:25px">Stock Price</span>                            
+                                <span style="font-size:25px">US Stock Price</span>                            
                             </div>
                             <div class="col-sm-6 pointer mt-5">
                                 <img src="assets/img/career.png" class="img-fluid" width="140" (click)="changePanel('greatech_career')"/>
@@ -425,6 +440,11 @@
                                 <img src="assets/img/read.png" class="img-fluid" width="140" (click)="changePanel('reading_corner')"/>
                                 <br><br>
                                 <span style="font-size:25px">Reading Corner</span>                            
+                            </div>
+                            <div class="col-sm-6 pointer mt-5">
+                                <img src="assets/img/headset.png" class="img-fluid" width="140" (click)="changePanel('matterport')"/>
+                                <br><br>
+                                <span style="font-size:25px">Matterport VR Showcase</span>                            
                             </div>
                         </div>
                     </div>
